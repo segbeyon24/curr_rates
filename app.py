@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return {"message": "Hello World"}
+    return {"message": "Hello World, It's lovely here."}
 
 @app.route("/currencies")
 def getAllCurrencies():
