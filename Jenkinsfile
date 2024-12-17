@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Checkout and Dependencies') {
+    stage('Checkout') {
       steps {
         script {
           git url: 'https://github.com/egbeyon/curr_rates', branch: 'main'
