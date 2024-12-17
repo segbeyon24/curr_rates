@@ -1,13 +1,25 @@
 pipeline {
   agent any
+
   stages {
-    stage('Build docker Image') {
+    stage('Build Docker Image') {
       steps {
-        sh '''script {
-          docker.build("weather-app", "-f Dockerfile .")
-        }'''
+        script {
+          docker.build("app", "-f Dockerfile .")
         }
       }
+    }
 
+    stage('Run Docker Container') {
+      steps {
+          sh 'docker run -d -p 5000:5000 app'
+      }
     }
   }
+
+  post {
+    always {
+      sh 'echo "Running on port 5000" '
+    }
+  }
+}
