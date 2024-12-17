@@ -1,12 +1,5 @@
 pipeline {
   agent any
-
-  environment {
-        // Define the path to your virtual environment
-        VENV_PATH = 'venv'  // This will be the name of the virtual environment folder
-        APP_DIR = '/path/to/your/flask/app'  // Path to your Flask app directory
-    }
-    
   stages {
     stage('Checkout') {
       steps {
@@ -14,10 +7,11 @@ pipeline {
           git(url: 'https://github.com/egbeyon/curr_rates', branch: 'main')
         }
 
-        script{
-        sh 'python3 -m venv venv'
-        sh 'source venv/bin/activate && pip install -r requirements.txt'
+        script {
+          sh 'python3 -m venv venv'
+          sh 'source venv/bin/activate && pip install -r requirements.txt'
         }
+
       }
     }
 
@@ -47,6 +41,10 @@ pipeline {
       }
     }
 
+  }
+  environment {
+    VENV_PATH = 'venv'
+    APP_DIR = '/path/to/your/flask/app'
   }
   post {
     always {
