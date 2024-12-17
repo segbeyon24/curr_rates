@@ -4,7 +4,7 @@ pipeline {
     stage('Checkout and Dependencies') {
       steps {
         script {
-          git branch: 'main', url: 'YOUR_GIT_URL' // Replace with your Git repository URL
+          git url: 'https://github.com/egbeyon/curr_rates', branch: 'main'
         }
 
         sh 'python3 -m venv venv'
